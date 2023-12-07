@@ -1,0 +1,22 @@
+---
+logLevel: info
+logDestinations:
+  - stdout
+logFile: mediamtx.log
+readTimeout: 10s
+writeTimeout: 10s
+writeQueueSize: 512
+udpMaxPayloadSize: 1472
+rtsp: yes
+protocols:
+  - udp
+  - multicast
+  - tcp
+paths:
+  cam:
+    publishUser: admin
+    publishPass: FJQLLY
+    readUser: admin
+    readPass: FJQLLY
+    runOnInit: ffmpeg -f v4l2 -i /dev/video0 -vf "drawtext=fontfile=monofonto.ttf:fontsize=60:text='%{localtime\:%H\\\\\:%M}':x=(w-tw)/2:y=h-(2*lh):fontcolor=white" -pix_fmt yuv420p -preset ultrafast -b:v 600k -f rtsp -vcodec h264 rtsp://admin:FJQLLY@localhost:$RTSP_PORT/$MTX_PATH
+    runOnInitRestart: yes

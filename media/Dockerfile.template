@@ -1,0 +1,14 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%:bookworm
+
+RUN apt-get update \
+ && apt-get install -yq ffmpeg \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+ENV TZ="Asia/Calcutta"
+
+WORKDIR /usr/src/app
+COPY . /usr/src/app
+RUN rm Docker*
+RUN chmod +x mediamtx
+CMD ["./mediamtx"]
