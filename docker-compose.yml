@@ -1,0 +1,28 @@
+version: "2.1"
+
+services:
+  mediamtx:
+    build: media
+    restart: always
+    ports:
+      - 8554:8554
+    privileged: true
+    environment:
+      - TZ=Asia/Kolkata
+
+  # https://github.com/balenablocks/hostname
+  hostname:
+    build: hostname
+    restart: no
+    labels:
+      io.balena.features.supervisor-api: 1
+    environment:
+      SET_HOSTNAME: stairs
+
+
+
+
+
+
+
+
