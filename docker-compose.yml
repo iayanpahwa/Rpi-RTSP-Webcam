@@ -7,9 +7,14 @@ services:
     ports:
       - 8554:8554
     devices:
-      - /dev/video0:/dev/video0
+      - /dev/video0:/dev/video0    # webcam
+      - /dev/video11:/dev/video11  # bcm2835-codec-encode (H.264 HW encoder)
+      - /dev/video12:/dev/video12  # bcm2835-codec-isp (format conversion)
+    group_add:
+      - video
     environment:
       - TZ=Asia/Kolkata
+      - UDEV=1
 
   # https://github.com/balenablocks/hostname
   hostname:

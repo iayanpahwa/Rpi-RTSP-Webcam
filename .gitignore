@@ -3,3 +3,4 @@ frigate-config.yml
 *.log
 logs.txt
 new-logs.txt
+context.md

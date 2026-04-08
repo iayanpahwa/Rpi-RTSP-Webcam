@@ -22,5 +22,5 @@ authInternalUsers:
         path: cam
 paths:
   cam:
-    runOnInit: ffmpeg -f v4l2 -input_format mjpeg -framerate 15 -video_size 1280x720 -i /dev/video0 -vf "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf:fontsize=60:text='%{localtime\:%H\\\\\:%M}':x=(w-tw)/2:y=h-(2*lh):fontcolor=white" -c:v libx264 -preset ultrafast -tune zerolatency -b:v 900k -g 30 -an -f rtsp rtsp://admin:FJQLLY@localhost:$RTSP_PORT/$MTX_PATH
+    runOnInit: ffmpeg -f v4l2 -input_format mjpeg -framerate 15 -video_size 1280x720 -i /dev/video0 -vf "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf:fontsize=60:text='%{localtime\:%H\\\\\:%M}':x=(w-tw)/2:y=h-(2*lh):fontcolor=white,format=yuv420p" -c:v h264_v4l2m2m -b:v 900k -g 30 -an -f rtsp rtsp://admin:FJQLLY@localhost:$RTSP_PORT/$MTX_PATH
     runOnInitRestart: yes
