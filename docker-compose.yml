@@ -6,7 +6,8 @@ services:
     restart: always
     ports:
       - 8554:8554
-    privileged: true
+    devices:
+      - /dev/video0:/dev/video0
     environment:
       - TZ=Asia/Kolkata
 
